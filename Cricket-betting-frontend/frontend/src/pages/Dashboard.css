@@ -1,0 +1,746 @@
+:root {
+  --primary-bg: #0f0f23;
+  --secondary-bg: #1a1a3e;
+  --tertiary-bg: #252548;
+  --accent-color: #ff6b35;
+  --accent-light: #ff8555;
+  --success-color: #00d9a3;
+  --warning-color: #ffa502;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0d9;
+  --border-color: #2d2d5f;
+  --shadow-accent: 0 0 30px rgba(255, 107, 53, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   MAIN WRAPPER
+   ============================================ */
+
+.dashboard-wrapper {
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Animation */
+.dashboard-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 217, 163, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dashboard-wrapper > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   WELCOME BANNER
+   ============================================ */
+
+.welcome-banner {
+  background: linear-gradient(135deg, rgba(26, 26, 62, 0.6), rgba(37, 37, 72, 0.6));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 30px;
+  animation: slideInDown 0.6s ease-out;
+  overflow: hidden;
+  position: relative;
+}
+
+.welcome-banner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.1), transparent);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.banner-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-text h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.banner-text p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.banner-illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-icon {
+  font-size: 80px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* ============================================
+   QUICK STATS BANNER
+   ============================================ */
+
+.quick-stats-banner {
+  display: flex;
+  gap: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.quick-stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 180px;
+  animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.quick-stat.divider {
+  width: 1px;
+  height: 50px;
+  background: var(--border-color);
+  flex: none;
+  min-width: auto;
+  gap: 0;
+}
+
+.quick-stat-icon {
+  font-size: 28px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.quick-stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.quick-stat-value {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent-color);
+}
+
+/* ============================================
+   DASHBOARD CONTENT
+   ============================================ */
+
+.dashboard-content {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   MATCHES SECTION
+   ============================================ */
+
+.matches-section {
+  animation: slideInLeft 0.6s ease-out 0.3s both;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.section-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.dashboard-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideInRight 0.6s ease-out 0.3s both;
+}
+
+.sidebar-card {
+  background: linear-gradient(135deg, rgba(26, 26, 62, 0.4), rgba(37, 37, 72, 0.4));
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: var(--transition);
+}
+
+.sidebar-card:hover {
+  background: linear-gradient(135deg, rgba(26, 26, 62, 0.6), rgba(37, 37, 72, 0.6));
+  border-color: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-accent);
+}
+
+.sidebar-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-card > p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(37, 37, 72, 0.5);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.action-btn:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-light);
+}
+
+.action-btn:hover::before {
+  left: 100%;
+}
+
+.action-btn.wallet-btn:hover {
+  background: rgba(0, 217, 163, 0.1);
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.action-btn.history-btn:hover {
+  background: rgba(255, 165, 2, 0.1);
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+}
+
+.action-btn.profile-btn:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: var(--accent-color);
+  color: var(--accent-light);
+}
+
+.action-icon {
+  font-size: 18px;
+  min-width: 20px;
+}
+
+.action-label {
+  flex: 1;
+}
+
+/* ============================================
+   INFO STEPS
+   ============================================ */
+
+.info-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.step:hover {
+  background: rgba(255, 107, 53, 0.15);
+  transform: translateY(-2px);
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.step p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ============================================
+   PROMO CARD
+   ============================================ */
+
+.promo-card {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.2), transparent);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.promo-badge {
+  display: inline-block;
+  background: var(--accent-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.promo-card h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-card p {
+  font-size: 12px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.promo-btn {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.promo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+}
+
+/* ============================================
+   LEAGUES CARD
+   ============================================ */
+
+.league-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(37, 37, 72, 0.5);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.league-item:hover {
+  background: rgba(255, 107, 53, 0.1);
+  transform: translateX(4px);
+}
+
+.league-icon {
+  font-size: 24px;
+}
+
+.league-info {
+  flex: 1;
+}
+
+.league-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.league-matches {
+  font-size: 10px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+  .dashboard-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .dashboard-sidebar {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    gap: 16px;
+  }
+
+  .sidebar-card {
+    grid-column: span 1;
+  }
+
+  .promo-card {
+    grid-column: span 1;
+  }
+
+  .leagues-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1024px) {
+  .welcome-banner {
+    padding: 24px;
+  }
+
+  .banner-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .banner-text h1 {
+    font-size: 28px;
+  }
+
+  .quick-stats-banner {
+    gap: 20px;
+  }
+
+  .dashboard-sidebar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leagues-card {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    padding: 12px;
+  }
+
+  .welcome-banner {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .banner-text h1 {
+    font-size: 24px;
+  }
+
+  .banner-text p {
+    font-size: 12px;
+  }
+
+  .banner-icon {
+    font-size: 60px;
+  }
+
+  .quick-stats-banner {
+    gap: 16px;
+    flex-direction: column;
+  }
+
+  .quick-stat {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .quick-stat.divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .dashboard-sidebar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sidebar-card {
+    padding: 16px;
+  }
+
+  .leagues-card {
+    grid-column: span 1;
+  }
+
+  .info-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-wrapper {
+    padding: 8px;
+  }
+
+  .welcome-banner {
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+
+  .banner-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .banner-text h1 {
+    font-size: 20px;
+  }
+
+  .banner-text p {
+    font-size: 11px;
+  }
+
+  .banner-icon {
+    font-size: 48px;
+  }
+
+  .quick-stats-banner {
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .quick-stat-value {
+    font-size: 18px;
+  }
+
+  .section-header h2 {
+    font-size: 22px;
+  }
+
+  .sidebar-card {
+    padding: 12px;
+  }
+
+  .sidebar-card h3 {
+    font-size: 14px;
+  }
+
+  .action-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+
+  .action-icon {
+    font-size: 16px;
+  }
+
+  .step {
+    padding: 8px;
+  }
+
+  .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .step p {
+    font-size: 10px;
+  }
+
+  .league-item {
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+
+  .league-icon {
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,380 @@
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+
+:root {
+  --primary-bg: #0f0f23;
+  --secondary-bg: #1a1a3e;
+  --accent-color: #ff6b35;
+  --accent-light: #ff8555;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0d9;
+  --border-color: #2d2d5f;
+  --success-color: #00d9a3;
+  --shadow: 0 8px 32px rgba(255, 107, 53, 0.15);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  color: var(--text-primary);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: var(--transition);
+}
+
+header.scrolled {
+  padding: 8px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ============================================
+   LOGO STYLES
+   ============================================ */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: var(--transition);
+  user-select: none;
+}
+
+.logo:hover {
+  background: rgba(255, 107, 53, 0.1);
+  transform: translateY(-2px);
+}
+
+.logo-icon {
+  font-size: 28px;
+  animation: flame-pulse 2s ease-in-out infinite;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   NAVIGATION STYLES
+   ============================================ */
+
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-button {
+  padding: 10px 18px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(0, 217, 163, 0.2));
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.nav-button:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+.nav-button:hover::before {
+  left: 0;
+}
+
+.nav-button.admin-button {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 107, 53, 0.05));
+  border-color: var(--accent-color);
+  color: var(--accent-light);
+}
+
+.nav-button.admin-button:hover {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.25), rgba(255, 107, 53, 0.15));
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+}
+
+/* ============================================
+   WALLET DISPLAY
+   ============================================ */
+
+.wallet-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, rgba(0, 217, 163, 0.1), rgba(0, 217, 163, 0.05));
+  border: 2px solid rgba(0, 217, 163, 0.3);
+  border-radius: 12px;
+  margin: 0 8px;
+  transition: var(--transition);
+}
+
+.wallet-display:hover {
+  background: linear-gradient(135deg, rgba(0, 217, 163, 0.15), rgba(0, 217, 163, 0.1));
+  border-color: var(--success-color);
+  box-shadow: 0 0 20px rgba(0, 217, 163, 0.2);
+  transform: scale(1.05);
+}
+
+.wallet-icon {
+  font-size: 18px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.wallet-amount {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--success-color);
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   LOGOUT BUTTON
+   ============================================ */
+
+.logout-button {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+  color: var(--accent-light);
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-color);
+  transition: right 0.4s ease;
+  z-index: -1;
+}
+
+.logout-button:hover {
+  color: var(--primary-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+}
+
+.logout-button:hover::before {
+  right: 0;
+}
+
+/* ============================================
+   MOBILE MENU TOGGLE
+   ============================================ */
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 2.5px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: var(--secondary-bg);
+  border-top: 1px solid var(--border-color);
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobile-nav-button {
+  padding: 12px 16px;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.mobile-nav-button:active {
+  background: var(--accent-color);
+  color: var(--primary-bg);
+}
+
+.wallet-display-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, rgba(0, 217, 163, 0.1), rgba(0, 217, 163, 0.05));
+  border: 2px solid rgba(0, 217, 163, 0.3);
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.mobile-logout {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+  color: var(--accent-light);
+  border: 2px solid var(--accent-color);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes flame-pulse {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-mobile {
+    display: flex;
+  }
+
+  .header-container {
+    padding: 12px 16px;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .logo-icon {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 10px 12px;
+  }
+
+  .logo-icon {
+    font-size: 20px;
+  }
+
+  .nav-mobile {
+    padding: 15px;
+    gap: 8px;
+  }
+}
