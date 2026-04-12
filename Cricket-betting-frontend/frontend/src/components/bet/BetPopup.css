@@ -1,0 +1,142 @@
+.bet-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 18, 39, 0.78);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 1000;
+  animation: popupFade 220ms ease-out;
+}
+
+.bet-popup-card {
+  width: min(460px, 100%);
+  background: rgba(18, 30, 61, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  animation: popupScale 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bet-popup-header {
+  display: grid;
+  gap: 10px;
+}
+
+.bet-popup-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(105, 109, 255, 0.16);
+  color: #c7d2fe;
+}
+
+.bet-popup-card h3 {
+  margin: 0;
+  color: #eef2ff;
+  font-size: 1.55rem;
+}
+
+.bet-popup-match-title {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.bet-popup-body {
+  display: grid;
+  gap: 10px;
+}
+
+.bet-popup-label {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.bet-popup-input {
+  width: 100%;
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.bet-popup-input:focus {
+  border-color: rgba(99, 102, 241, 0.9);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+  transform: translateY(-1px);
+}
+
+.bet-popup-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.bet-popup-button {
+  border: none;
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
+}
+
+.bet-popup-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.bet-popup-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.66;
+}
+
+.bet-popup-confirm {
+  background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%);
+  color: #0f172a;
+  box-shadow: 0 16px 30px rgba(34, 211, 238, 0.18);
+}
+
+.bet-popup-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupScale {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
