@@ -1,0 +1,497 @@
+/* ============================================
+   SIDEBAR STYLES
+   ============================================ */
+
+:root {
+  --primary-bg: #0f0f23;
+  --secondary-bg: #1a1a3e;
+  --tertiary-bg: #252548;
+  --accent-color: #ff6b35;
+  --accent-light: #ff8555;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0d9;
+  --border-color: #2d2d5f;
+  --success-color: #00d9a3;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-accent: 0 0 30px rgba(255, 107, 53, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   SIDEBAR TOGGLE BUTTON (MOBILE)
+   ============================================ */
+
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 20px;
+  z-index: 998;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(255, 107, 53, 0.2));
+  box-shadow: var(--shadow-accent);
+}
+
+.sidebar-toggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ============================================
+   SIDEBAR OVERLAY (MOBILE)
+   ============================================ */
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 900;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, rgba(26, 26, 62, 0.9), rgba(37, 37, 72, 0.9));
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  transition: var(--transition);
+  z-index: 901;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* ============================================
+   SIDEBAR HEADER
+   ============================================ */
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.5px;
+}
+
+.sports-icon {
+  font-size: 24px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: var(--transition);
+}
+
+.sidebar-close:hover {
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+
+/* ============================================
+   SIDEBAR DIVIDER
+   ============================================ */
+
+.sidebar-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+  margin: 16px 0;
+  border-radius: 1px;
+}
+
+/* ============================================
+   SPORTS NAVIGATION
+   ============================================ */
+
+.sports-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.sport-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 107, 53, 0.05);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
+}
+
+.sport-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.sport-item:hover {
+  background: rgba(255, 107, 53, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+  color: var(--accent-light);
+  transform: translateX(4px);
+}
+
+.sport-item:hover::before {
+  left: 100%;
+}
+
+.sport-item.active {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.3), rgba(255, 107, 53, 0.15));
+  border-color: var(--accent-color);
+  color: var(--accent-light);
+  box-shadow: inset 0 0 20px rgba(255, 107, 53, 0.2), var(--shadow-accent);
+}
+
+.sport-item.active::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent-color), var(--success-color));
+  border-radius: 0 8px 8px 0;
+  animation: slideIn 0.3s ease-out;
+}
+
+.sport-icon {
+  font-size: 18px;
+  min-width: 20px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.sport-item:hover .sport-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.sport-item.active .sport-icon {
+  animation: bounce 0.6s ease-out;
+}
+
+.sport-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sport-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.sport-item.active .sport-indicator {
+  opacity: 1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   SIDEBAR FOOTER
+   ============================================ */
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.sidebar-subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  margin-top: 0;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.stat-item {
+  flex: 1;
+  background: rgba(0, 217, 163, 0.1);
+  border: 1px solid rgba(0, 217, 163, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stat-item:hover {
+  background: rgba(0, 217, 163, 0.15);
+  border-color: var(--success-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 217, 163, 0.2);
+}
+
+.stat-label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--success-color);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.7);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(255, 107, 53, 0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 3px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .sidebar-title {
+    font-size: 18px;
+  }
+
+  .sport-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .sport-icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 240px;
+    z-index: 901;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebar-overlay.hidden {
+    display: none;
+  }
+
+  .sidebar-close {
+    display: block;
+  }
+
+  .sport-item {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .sidebar-title {
+    font-size: 16px;
+  }
+
+  .sport-item {
+    padding: 10px 12px;
+    font-size: 13px;
+    gap: 10px;
+  }
+
+  .quick-stats {
+    flex-direction: column;
+  }
+
+  .stat-item {
+    padding: 10px;
+  }
+
+  .stat-value {
+    font-size: 16px;
+  }
+}
+
+/* ============================================
+   DARK MODE & THEME SUPPORT
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    background: linear-gradient(180deg, rgba(15, 15, 35, 0.95), rgba(26, 26, 62, 0.95));
+  }
+}
+
+/* ============================================
+   SCROLL SMOOTH
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+}

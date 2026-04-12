@@ -1,0 +1,389 @@
+/* ============================================
+   PROTECTED ROUTE STYLES
+   ============================================ */
+
+:root {
+  --primary-bg: #0f0f23;
+  --secondary-bg: #1a1a3e;
+  --tertiary-bg: #252548;
+  --accent-color: #ff6b35;
+  --accent-light: #ff8555;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0d9;
+  --border-color: #2d2d5f;
+  --success-color: #00d9a3;
+  --danger-color: #ff4757;
+  --shadow-accent: 0 0 30px rgba(255, 107, 53, 0.2);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.protected-route-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.protected-route-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 217, 163, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 107, 53, 0.2);
+  border-top-color: var(--accent-color);
+  border-right-color: var(--success-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 217, 163, 0.15);
+  border-top-color: var(--success-color);
+  border-radius: 50%;
+  animation: spinReverse 1.5s linear infinite;
+  top: 5px;
+  left: 5px;
+}
+
+.loading-text {
+  font-size: 16px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin: 0;
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   REDIRECT STATE (NO TOKEN)
+   ============================================ */
+
+.protected-route-redirect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.protected-route-redirect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 71, 87, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.redirect-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  z-index: 1;
+  animation: slideInDown 0.6s ease-out;
+  background: rgba(26, 26, 62, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 400px;
+}
+
+.redirect-icon {
+  font-size: 64px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.redirect-container h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.redirect-container p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ============================================
+   FORBIDDEN STATE (ROLE MISMATCH)
+   ============================================ */
+
+.protected-route-forbidden {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.protected-route-forbidden::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 71, 87, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse-bg 3s ease-in-out infinite;
+}
+
+.forbidden-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  z-index: 1;
+  animation: slideInDown 0.6s ease-out;
+  background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 107, 53, 0.05));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 71, 87, 0.3);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 400px;
+}
+
+.forbidden-icon {
+  font-size: 64px;
+  animation: shake 0.5s ease-in-out;
+}
+
+.forbidden-container h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: var(--danger-color);
+  letter-spacing: 0.5px;
+}
+
+.forbidden-container p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.required-role {
+  font-size: 12px;
+  color: var(--accent-light);
+  background: rgba(255, 107, 53, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CONTENT STATE (AUTHORIZED)
+   ============================================ */
+
+.protected-route-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-bg {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .loading-container {
+    gap: 16px;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border-width: 3px;
+  }
+
+  .loading-text {
+    font-size: 14px;
+  }
+
+  .redirect-container,
+  .forbidden-container {
+    padding: 30px 20px;
+    max-width: 90vw;
+    margin: 20px;
+  }
+
+  .redirect-icon,
+  .forbidden-icon {
+    font-size: 56px;
+  }
+
+  .redirect-container h2,
+  .forbidden-container h2 {
+    font-size: 20px;
+  }
+
+  .redirect-container p,
+  .forbidden-container p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .redirect-container,
+  .forbidden-container {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .redirect-icon,
+  .forbidden-icon {
+    font-size: 48px;
+  }
+
+  .redirect-container h2,
+  .forbidden-container h2 {
+    font-size: 18px;
+  }
+
+  .spinner {
+    width: 45px;
+    height: 45px;
+  }
+}
